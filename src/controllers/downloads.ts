@@ -27,7 +27,7 @@ router.post("/requestDownload", async (req, res) => {
     if (download) {
       return res.status(200).send({ msg: "ok", success: true, item: download });
     }
-  } catch (err) {
+  } catch (err: any) {
     return res.status(500).send({ msg: "", success: false });
   }
 });
