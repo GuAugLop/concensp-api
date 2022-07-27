@@ -17,16 +17,14 @@ router.post("/requestDownload", async (req, res) => {
       return res.status(403).send({ msg: "CNPJ inválido" });
     }
 
-    const download = await DownloadModel.create({
+    DownloadModel.create({
       cnpj,
       nome,
       arquivo,
       cidade,
       estado,
     });
-    if (download) {
-      return res.status(200).send({ msg: "ok", success: true, item: download });
-    }
+    res.status(200).send({ msg: "ok", success: true });
   } catch (err: any) {
     return res.status(500).send({ msg: "", success: false });
   }
