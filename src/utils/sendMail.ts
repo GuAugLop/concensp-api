@@ -6,6 +6,7 @@ type Contact = {
   nome: string;
   sobrenome: string;
   telefone: string;
+  titulo: string;
   cidade: string;
   estado: string;
   email: string;
@@ -19,6 +20,7 @@ async function sendMail({
   cidade,
   estado,
   email,
+  titulo,
   telefone,
 }: Contact) {
   let transporter = nodemailer.createTransport({
@@ -42,7 +44,8 @@ async function sendMail({
       telefone,
       cidade,
       estado,
-      assunto
+      assunto,
+      titulo
     ), // html body
   });
   if (!info.rejected.length) {
@@ -62,7 +65,8 @@ function htmlGenContact(
   telefone: string,
   cidade: string,
   estado: string,
-  assunto: string
+  assunto: string,
+  titulo: string
 ) {
   return `
   <style>
@@ -76,6 +80,8 @@ function htmlGenContact(
   <p>email: ${email}</p>
   <p>Telefone/Celular: ${telefone}</p>
   <p>Cidade: ${cidade}/${estado}</p>
+  <h2>Titulo:</h2>
+  <p>${titulo}</p>
   <h3>Assunto:</h3>
   <p>${assunto}</p>
   `;

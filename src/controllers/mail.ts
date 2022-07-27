@@ -3,10 +3,10 @@ import mail from "../utils/sendMail";
 const router = express.Router();
 
 router.post("/contact", (req, res) => {
-  const { nome, sobrenome, estado, assunto, cidade, email, telefone } =
+  const { nome, sobrenome, estado, assunto, cidade, titulo, email, telefone } =
     req.body;
   mail
-    .sendMail({ nome, sobrenome, estado, assunto, cidade, email, telefone })
+    .sendMail({ nome, sobrenome, estado, titulo, assunto, cidade, email, telefone })
     .then(() => {
       res.status(200).send({ msg: "Email Enviado" });
     })
