@@ -4,13 +4,13 @@ services:
   parcele-contas-api:
     image: node:16.15-alpine3.14
     container_name: concensp-api
-    working_dir: /
+    working_dir: /api-concensp
     ports:
       - "8080:8080"
     volumes:
       - ./api-concensp:/api-concensp
     environment:
-      VIRTUAL_PORT: 3000
+      VIRTUAL_PORT: 8080
       VIRTUAL_HOST: api.concensp.com.br
       LETSENCRYPT_HOST: api.concensp.com.br
       LETSENCRYPT_EMAIL: dev@concensp.com.br
