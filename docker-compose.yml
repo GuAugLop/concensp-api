@@ -4,7 +4,7 @@ services:
   parcele-contas-api:
     image: node:16.15-alpine3.14
     container_name: concensp-api
-    working_dir: ./
+    working_dir: /
     ports:
       - "8080:8080"
     volumes:
