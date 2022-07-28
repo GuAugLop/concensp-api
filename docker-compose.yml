@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   parcele-contas-api:
@@ -14,7 +14,7 @@ services:
       VIRTUAL_HOST: api.concensp.com.br
       LETSENCRYPT_HOST: api.concensp.com.br
       LETSENCRYPT_EMAIL: dev@concensp.com.br
-    entrypoint: [ "npm", "run", "prod" ]
+    entrypoint: ["yarn", "prod"]
     networks:
       - internal-network
     restart: always
