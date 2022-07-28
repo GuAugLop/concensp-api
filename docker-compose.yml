@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+  parcele-contas-api:
+    image: node:16.15-alpine3.14
+    container_name: concensp-api
+    working_dir: /api-concensp
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api-concensp:/api-concensp
+    environment:
+      VIRTUAL_PORT: 3000
+      VIRTUAL_HOST: api.concensp.com.br
+      LETSENCRYPT_HOST: api.concensp.com.br
+      LETSENCRYPT_EMAIL: dev@concensp.com.br
+    entrypoint: [ "npm", "run", "prod" ]
+    networks:
+      - internal-network
+    restart: always
+  jwildernginxproxy:
+    image: jwilder/nginx-proxy
+    container_name: jwildernginxproxy
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - certs:/etc/nginx/certs:ro
+      - vhostd:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./proxy.conf:/etc/nginx/conf.d/my_proxy.conf
+    networks:
+      - internal-network
+    restart: always
+
+  letsencrypt-nginx-proxy-companion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-nginx-proxy-companion
+    environment:
+      - NGINX_PROXY_CONTAINER=jwildernginxproxy
+    volumes:
+      - certs:/etc/nginx/certs
+      - vhostd:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - internal-network
+    restart: always
+volumes:
+  certs:
+  html:
+  vhostd:
+
+networks:
+  internal-network:
+    driver: bridge
