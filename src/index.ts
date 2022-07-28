@@ -13,6 +13,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Controllers
+app.get("/", (req, res) => {
+  res.status(200).send({ msg: "API Concensp" });
+});
 app.use("/", mailController);
 app.use("/", downloadsController);
 

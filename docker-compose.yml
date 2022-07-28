@@ -11,8 +11,8 @@ services:
       - ./api-concensp:/api-concensp
     environment:
       VIRTUAL_PORT: 8080
-      VIRTUAL_HOST: www.concensp-api.com.br
-      LETSENCRYPT_HOST: www.concensp-api.com.br
+      VIRTUAL_HOST: www.api.concensp.com.br
+      LETSENCRYPT_HOST: www.api.concensp.com.br
       LETSENCRYPT_EMAIL: dev@concensp.com.br
     entrypoint: ["yarn", "prod"]
     networks:
@@ -31,7 +31,7 @@ services:
       - vhostd:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./proxy.conf:/etc/nginx/conf.d/default.conf
+      # - ./proxy.conf:/etc/nginx/conf.d/default.conf
     networks:
       - internal-network
     restart: always
