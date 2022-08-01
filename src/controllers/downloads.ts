@@ -30,4 +30,13 @@ router.post("/requestDownload", async (req, res) => {
   }
 });
 
+router.get("/allDownloads", async (req, res) => {
+  try {
+    const downloads = await DownloadModel.find();
+    res.status(200).send({ mds: "ok", success: true, data: downloads });
+  } catch (err: any) {
+    return res.status(500).send({ msg: "", success: false });
+  }
+});
+
 export default router;
