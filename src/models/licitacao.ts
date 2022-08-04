@@ -5,20 +5,14 @@ const { Schema } = mongoose;
 const licitacaoSchema = new Schema({
   titulo: String,
   objetivo: String,
-  active: Boolean,
+  active: {
+    type: Boolean,
+    default: false,
+  },
   numero: String,
   modalidade: String,
   data: String,
-  arquivos: [
-    {
-      nome: String,
-      envio: {
-        type: Date,
-        default: Date.now,
-      },
-      path: String,
-    },
-  ],
+  arquivos: [{ type: Schema.Types.ObjectId, ref: "arquivos" }],
   createdAt: {
     type: Date,
     default: Date.now,

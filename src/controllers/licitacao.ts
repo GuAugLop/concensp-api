@@ -8,7 +8,9 @@ router.get("/licitacoes", async (req, res) => {
 });
 
 router.post("/licitacoes", (req, res) => {
-  const { titulo, objetivo, active, numero, modalidade, data } = req.body;
+  const { titulo, objetivo, numero, modalidade, data } = req.body;
 });
+
+router.post("/arquivos", (req, res) => {});
 
 export default router;
