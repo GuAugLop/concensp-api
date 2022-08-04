@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
 import bodyParser from "body-parser";
-import { mailController, downloadsController } from "./controllers/index";
+import { mailController, downloadsController, licitacaoController } from "./controllers/index";
 import "./config/mongo";
 const app = express();
 
@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 });
 app.use("/", mailController);
 app.use("/", downloadsController);
+app.use("/", licitacaoController);
 
 app.listen(PORT, () => {
   console.log("server is running in port: " + PORT);
