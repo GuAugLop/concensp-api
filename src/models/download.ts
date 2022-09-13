@@ -8,6 +8,7 @@ const downloadSchema = new Schema({
   arquivo: String,
   cidade: String,
   estado: String,
+  email: String,
   createdAt: {
     type: Date,
     default: Date.now,

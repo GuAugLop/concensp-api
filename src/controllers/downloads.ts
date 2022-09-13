@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.post("/requestDownload", async (req, res) => {
   try {
-    const { cnpj, nome, arquivo, cidade, estado } = req.body;
-    if (!cnpj || !nome || !cidade || !estado) {
+    const { cnpj, nome, arquivo, cidade, estado, email } = req.body;
+    if (!cnpj || !nome || !cidade || !estado || !email) {
       return res.status(403).send({ msg: "Preencha todos os campos" });
     }
 
@@ -23,6 +23,7 @@ router.post("/requestDownload", async (req, res) => {
       arquivo,
       cidade,
       estado,
+      email
     });
     res.status(200).send({ msg: "ok", success: true });
   } catch (err: any) {
