@@ -6,7 +6,10 @@ const storage = multer.diskStorage({
     cb(null, path.resolve(__dirname, "..", "public", "arquivos"));
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(
+      null,
+      file.originalname.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    );
   },
 });
 

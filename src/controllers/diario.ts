@@ -16,7 +16,7 @@ router.post(
         return res.status(400).send({ msg: "", success: false });
       }
       const filePath =
-        "https://www.api.concensp.com.br/arquivos/" + arquivo.filename;
+        "https://www.api.concensp.com.br/arquivos/" + arquivo.filename.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
       const newDiario = await DiarioModel.create({
         arquivo: filePath,
         nome,
