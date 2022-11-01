@@ -16,7 +16,13 @@ router.post(
         return res.status(400).send({ msg: "", success: false });
       }
       const filePath =
-        "https://www.api.concensp.com.br/arquivos/" + arquivo.filename.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        "https://www.api.concensp.com.br/arquivos/" +
+        arquivo.filename
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/ /g, "_");
+      console.log({ filePath });
+
       const newDiario = await DiarioModel.create({
         arquivo: filePath,
         nome,
