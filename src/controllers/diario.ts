@@ -18,7 +18,6 @@ router.post(
       const filePath =
         "https://www.api.concensp.com.br/arquivos/" +
         arquivo.filename
-          .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .replace(/ /g, "_");
       console.log({ filePath });
