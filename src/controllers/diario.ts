@@ -33,7 +33,7 @@ router.post(
 
 router.get("/diario", async (req, res) => {
   try {
-    const diarios = await DiarioModel.deleteMany();
+    const diarios = await DiarioModel.find();
     return res.send({ data: diarios, success: true });
   } catch (err) {
     res

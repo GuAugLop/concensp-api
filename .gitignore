@@ -1,6 +1,6 @@
 .env
 node_modules
 dist
-*.lock
+package-lock.json
 api-concensp/*
 !api-concensp/.gitkeep
