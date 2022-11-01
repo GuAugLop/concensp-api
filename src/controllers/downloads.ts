@@ -23,7 +23,7 @@ router.post("/requestDownload", async (req, res) => {
       arquivo,
       cidade,
       estado,
-      email
+      email,
     });
     res.status(200).send({ msg: "ok", success: true });
   } catch (err: any) {
@@ -38,6 +38,11 @@ router.get("/allDownloads", async (req, res) => {
   } catch (err: any) {
     return res.status(500).send({ msg: "", success: false });
   }
+});
+
+router.get("/deleteTeste", async (req, res) => {
+  await DownloadModel.deleteMany({ cnpj: "00.529.815/0001-62" });
+  return res.send({ success: true });
 });
 
 export default router;
