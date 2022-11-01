@@ -15,12 +15,9 @@ router.post(
       if (!nome || !data || !arquivo) {
         return res.status(400).send({ msg: "", success: false });
       }
+
       const filePath =
-        "https://www.api.concensp.com.br/arquivos/" +
-        arquivo.filename
-          .replace(/[\u0300-\u036f]/g, "")
-          .replace(/ /g, "_");
-      console.log({ filePath });
+        "https://www.api.concensp.com.br/arquivos/" + arquivo.filename;
 
       const newDiario = await DiarioModel.create({
         arquivo: filePath,
