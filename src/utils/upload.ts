@@ -7,13 +7,11 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     console.log(
-      file.originalname
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/ /g, "_")
+      file.originalname.replace(/[\u0300-\u036f]/g, "").replace(/ /g, "_")
     );
     cb(
       null,
-      file.originalname.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      file.originalname.replace(/[\u0300-\u036f]/g, "").replace(/ /g, "_")
     );
   },
 });
